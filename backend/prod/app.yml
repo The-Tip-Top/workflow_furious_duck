@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+  namespace: default
+  labels:
+    app: webapp
+spec:
+  selector:
+    matchLabels:
+      app: webapp
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: web-backend
+        image: thetiptopymcm/thetiptop-backend:latest
+        resources:
+          requests:
+            cpu: 200m
+            memory: 500Mi
+          limits:
+            cpu: 500m
+            memory: 1Gi
+        env:
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-user
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-password
+        - name: DATABASE_URL
+          value: "mysql://thetiptop:thetiptop2024@mysql-service:3306/thetiptop"
+        ports:
+        - containerPort: 3000
+          name: webapp
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-lb
+  namespace: default
+spec:
+  selector:
+    app: webapp
+  type: LoadBalancer
+  ports:
+  - name: webapp
+    protocol: TCP
+    port: 3000
+    targetPort: 3001
