@@ -1,0 +1,8 @@
+# mysql-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config
+  namespace: default
+data:
+  mysql-db-url: "mysql://thetiptop:thetiptop2024@mysql-service:3306/thetiptop?schema=public&connection_limit=10"
