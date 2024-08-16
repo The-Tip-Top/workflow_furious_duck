@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: web-backend
-        image: thetiptopymcm/thetiptop-backend:latest
+        image: thetiptopymcm/thetiptop-backend:${IMAGE_TAG}
         resources:
           requests:
             cpu: 200m
