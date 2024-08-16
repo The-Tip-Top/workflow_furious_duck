@@ -17,21 +17,40 @@ spec:
       initContainers:
       - name: fix-permissions
         image: busybox
-        command: ['sh', '-c', 'chown -R 1000:1000 /var/jenkins_home']
+        command: ['sh', '-c', 'chown -R 1000:1000 /var/jenkins_home && mkdir -p /var/lib/apt/lists/partial && chown -R 1000:1000 /var/lib/apt/lists']
         volumeMounts:
         - name: jenkins-home
           mountPath: /var/jenkins_home
+        - name: apt-lists
+          mountPath: /var/lib/apt/lists
+        securityContext:
+          privileged: true
       containers:
       - name: jenkins
-        image: jenkins/jenkins:latest
+        image: thetiptopymcm/jenkins-docker:latest
         ports:
         - containerPort: 8080
           name: web
         - containerPort: 50000
           name: agent
+        securityContext:
+          privileged: true  
         volumeMounts:
         - name: jenkins-home
           mountPath: /var/jenkins_home
+        - name: docker-socket
+          mountPath: /var/run/docker.sock
+        - name: apt-lists
+          mountPath: /var/lib/apt/lists
+      volumes:
+      - name: docker-socket
+        hostPath:
+          path: /var/run/docker.sock
+          type: Socket
+      - name: apt-lists
+        hostPath:
+          path: /var/lib/apt/lists
+          type: Directory
   volumeClaimTemplates:
   - metadata:
       name: jenkins-home
