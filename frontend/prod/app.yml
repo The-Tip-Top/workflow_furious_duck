@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: frontend
-  replicas: 2  # Ajustez le nombre de réplicas selon vos besoins
+  replicas: 1  # Ajustez le nombre de réplicas selon vos besoins
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -23,6 +23,7 @@ spec:
       containers:
       - name: frontend
         image: thetiptopymcm/thetiptop-frontend:latest
+        imagePullPolicy: Always
         resources:
           requests:
             cpu: 100m
@@ -33,6 +34,19 @@ spec:
         ports:
         - containerPort: 3000
           name: frontend
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: AUTH_SECRET
+          value: "mSaxQBtqqQbdhBoCFnHMLxNLmPzb0DaiMInMkbmeZkg="  # Remplacez par votre secret sécurisé
+        - name: AUTH_URL
+          # value: "37.59.31.166"  
+          value: "https://dsp5-archi-022a-4-5-g2.fr"  
+        - name: AUTH_TRUST_HOST
+          value: "true"  
+        - name: DATABASE_URL
+          value: "mysql://thetiptop:thetiptop2024@mysql-service:3306/thetiptop"  
+        
 
 ---
 
