@@ -36,6 +36,17 @@ spec:
         ports:
         - containerPort: 3000
           name: frontend
+        env:
+        - name: NODE_ENV
+          value: "staging"
+        - name: AUTH_SECRET
+          value: "mSaxQBtqqQbdhBoCFnHMLxNLmPzb0DaiMInMkbmeZkg="  # Remplacez par votre secret sécurisé
+        - name: AUTH_URL
+          value: "http://51.91.81.95"  
+        - name: AUTH_TRUST_HOST
+          value: "true"  
+        - name: DATABASE_URL
+          value: "mysql://thetiptop:thetiptop2024@mysql-service:3306/thetiptop"  
 
 ---
 
