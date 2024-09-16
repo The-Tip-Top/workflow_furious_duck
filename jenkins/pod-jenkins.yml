@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jenkins
+spec:
+  containers:
+  - name: jenkins
+    image: thetiptopymcm/jenkins-docker
+    volumeMounts:
+    - mountPath: /var/jenkins_home
+      name: jenkins-home
+    resources:
+      requests:
+        memory: "512Mi"
+        cpu: "500m"
+      limits:
+        memory: "1Gi"
+        cpu: "1"
+  volumes:
+  - name: jenkins-home
+    persistentVolumeClaim:
+      claimName: jenkins-home-jenkins-1
