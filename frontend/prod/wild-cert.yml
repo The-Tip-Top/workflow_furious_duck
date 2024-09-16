@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-certificate
+  namespace: default
+spec:
+  secretName: wildcard-tls
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-prod
+  commonName: '*.dsp5-archi-022a-4-5-g2.fr'
+  dnsNames:
+  - '*.dsp5-archi-022a-4-5-g2.fr'
+  - 'dsp5-archi-022a-4-5-g2.fr'

@@ -59,4 +59,4 @@ spec:
       storageClassName: retained
       resources:
         requests:
-          storage: 2Gi
+          storage: 10Gi

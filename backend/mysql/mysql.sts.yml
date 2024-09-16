@@ -44,13 +44,13 @@ spec:
       volumes:
       - name: mysql-data
         persistentVolumeClaim:
-          claimName: mysql-pvc
+          claimName: mysql-pvc-mysql-0
   volumeClaimTemplates:
   - metadata:
-      name: mysql-pvc
+      name: mysql-pvc-mysql-0
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: retained
       resources:
         requests:
-          storage: 1Gi
+          storage: 500Mi
