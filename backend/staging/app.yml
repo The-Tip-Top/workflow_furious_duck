@@ -43,6 +43,8 @@ spec:
               key: mysql-password
         - name: DATABASE_URL
           value: "mysql://thetiptop:thetiptop2024@mysql-service.default.svc.cluster.local:3306/thetiptop"
+        - name: RESENd_API_KEY
+          value: "re_4Ft1Hm5s_C3s5tT4ZD75krrY7mC7ZuQnC"
         ports:
         - containerPort: 3000
           name: webapp
@@ -53,6 +55,10 @@ kind: Service
 metadata:
   name: webapp-lb-staging
   namespace: staging
+  # annotations:
+  #   service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+  #   service.beta.kubernetes.io/aws-load-balancer-eip-allocations: "eipalloc-12345678,eipalloc-87654321"
+
 spec:
   selector:
     app: webapp-staging
