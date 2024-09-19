@@ -55,10 +55,6 @@ kind: Service
 metadata:
   name: webapp-lb-staging
   namespace: staging
-  # annotations:
-  #   service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
-  #   service.beta.kubernetes.io/aws-load-balancer-eip-allocations: "eipalloc-12345678,eipalloc-87654321"
-
 spec:
   selector:
     app: webapp-staging

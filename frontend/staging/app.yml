@@ -40,7 +40,7 @@ spec:
         - name: NODE_ENV
           value: "staging"
         - name: AUTH_SECRET
-          value: "mSaxQBtqqQbdhBoCFnHMLxNLmPzb0DaiMInMkbmeZkg="  # Remplacez par votre secret sécurisé
+          value: "mSaxQBtqqQbdhBoCFnHMLxNLmPzb0DaiMInMkbmeZkg="
         - name: AUTH_URL
           value: "https://front-staging.dsp5-archi-022a-4-5-g2.fr"  
         - name: AUTH_TRUST_HOST

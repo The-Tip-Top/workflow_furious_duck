@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: frontend
-  replicas: 1  # Ajustez le nombre de réplicas selon vos besoins
+  replicas: 1
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -38,9 +38,8 @@ spec:
         - name: NODE_ENV
           value: "production"
         - name: AUTH_SECRET
-          value: "mSaxQBtqqQbdhBoCFnHMLxNLmPzb0DaiMInMkbmeZkg="  # Remplacez par votre secret sécurisé
+          value: "mSaxQBtqqQbdhBoCFnHMLxNLmPzb0DaiMInMkbmeZkg="
         - name: AUTH_URL
-          # value: "37.59.31.166"  
           value: "https://dsp5-archi-022a-4-5-g2.fr"  
         - name: AUTH_TRUST_HOST
           value: "true"  
