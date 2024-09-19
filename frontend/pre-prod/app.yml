@@ -42,7 +42,7 @@ spec:
         - name: AUTH_SECRET
           value: "mSaxQBtqqQbdhBoCFnHMLxNLmPzb0DaiMInMkbmeZkg="  # Remplacez par votre secret sécurisé
         - name: AUTH_URL
-          value: "http://51.91.81.95"  
+          value: "https://front-pre-prod.dsp5-archi-022a-4-5-g2.fr"  
         - name: AUTH_TRUST_HOST
           value: "true"  
         - name: DATABASE_URL
